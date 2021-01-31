@@ -1,0 +1,18 @@
+{
+    "title": "user sign out",
+    "type": "object",
+    "properties": {
+      "body": {
+        "type": "object",
+        "properties": {
+          "jwt": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "jwt"
+        ]
+      }
+    }
+  }
+  
