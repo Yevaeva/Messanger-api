@@ -8,6 +8,11 @@ const userSchema = require('../schemas/user.schema'),
         ObjectId = require('mongoose').Types.ObjectId;
 
 class UserController {
+     getAll = async (req, res) => {
+                const info = await userSchema.find()
+                return info
+        
+            }
     
     create = async (req, res, next) => {
         try {

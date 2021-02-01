@@ -8,6 +8,8 @@ userRouter = express.Router();
 /**
 * Аll routes start with '/user'
 **/
+// userRouter.get('/', userController.getAll);
+
 
 // Create a new user
 userRouter.post('/', /*validator('user-create'),*/ userController.create);
