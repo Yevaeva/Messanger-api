@@ -1,7 +1,5 @@
-'use strict';
-
+  
 const jwt = require('jsonwebtoken'),
-  authConfig = require('../../config/auth.config'),
   errorConfig = require('../../config/error.config');
 
 
@@ -20,7 +18,7 @@ module.exports = (req, res, next) => {
   token = bearer[1];
 
   return Promise.try(() => {
-    return jwt.verify(token, authConfig.jwt.secret)
+    return jwt.verify(token, process.env.AUTH_JWT_SECRET)
   }).
   then(token_data => {
     res.locals.userId = token_data.userId;

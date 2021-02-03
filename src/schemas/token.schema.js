@@ -1,7 +1,6 @@
 'use strict';
 const mongoose = require('mongoose'),
         {Schema} = mongoose,
-        auth = require('../../config/auth.config'),
         ObjectId = Schema.ObjectId;
 
 const TokenSchema = new Schema(
@@ -28,7 +27,7 @@ const TokenSchema = new Schema(
 )
 .index(
         {'created_at': 1},
-        {expireAfterSeconds: auth.jwt.exp}
+        {expireAfterSeconds: process.env.AUTH_JWT_EXP}
 );
 
 module.exports = mongoose.model('Token', TokenSchema);
