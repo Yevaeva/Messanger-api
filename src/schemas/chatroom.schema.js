@@ -4,7 +4,8 @@ const chatroomSchema = new Schema(
 	{
 		name: {
 			type: String,
-		}
+		},
+		
 	})
 	
 

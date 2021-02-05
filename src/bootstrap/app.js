@@ -10,6 +10,8 @@ const usersRouter = require('../routes/user.route');
 const chatRoomRouter = require('../routes/chatroom.route');
 const {  getUsersInRoom } = require("../../users");
 const {  getMessagesInRoom } = require("../../messages");
+const auth = require('../middlewares/auth.middleware');
+const chatRoomController = require('../controllers/chatroom.controller');
 
 // Initialize express app
 const app = express();
@@ -83,7 +85,7 @@ app.get("/rooms/:roomId/messages", (req, res) => {
   const messages = getMessagesInRoom(req.params.roomId);
   return res.json({ messages });
 });
-
+chatRoomRouter.get('/',auth, /*validator('user-create'),*/ chatRoomController.getAllChatrooms);
 app.enable('case sensitive routing');
 app.enable('strict routing');
 

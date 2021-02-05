@@ -5,6 +5,8 @@ const messages = [];
 const addMessage = (room, message) => {
   const msg = { id: uuid.v4(), room, ...message };
   messages.push(msg);
+  console.log('messages',messages);
+
   return msg;
 };
 

@@ -38,7 +38,7 @@ const STOP_TYPING_MESSAGE_EVENT = "STOP_TYPING_MESSAGE_EVENT";
 
 io.on("connection", (socket) => {
   console.log(`${socket.id} connected`);
-
+console.log(socket.handshake);
   // Join a conversation
   const { roomId, name, picture } = socket.handshake.query;
   socket.join(roomId);

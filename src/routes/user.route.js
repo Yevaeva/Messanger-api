@@ -8,7 +8,7 @@ userRouter = express.Router();
 /**
 * Аll routes start with '/user'
 **/
-// userRouter.get('/', userController.getAll);
+ userRouter.get('/:email', userController.getOne);
 
 
 // Create a new user
