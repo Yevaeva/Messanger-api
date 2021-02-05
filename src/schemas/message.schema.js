@@ -1,17 +1,23 @@
-const mongoose = require('mongoose'),{Schema} = mongoose;
+const mongoose = require('mongoose')
+const {Schema} = mongoose;
+let userSchema = require('./user.schema')
 
 const messageSchema = new Schema(
 	{
-		chatroom: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref:'chatroom.schema'
+		room: {
+			type: String
+		},
+		id:{
+			type:String
+		},
+		senderId:{
+			type:String
+		},
+		body:{
+			type:String
 		},
 		user: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref:'user.schema'
-		},
-		message:{
-			type:String
+			type: [userSchema]
 		}
 	
 	});

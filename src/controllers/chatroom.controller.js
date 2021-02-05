@@ -8,6 +8,29 @@ const errorConfig = require('../../config/error.config')
 
 
 class ChatRoomController {
+    createMsg = async (req, res, next) => {
+        try {
+            const data = req.body;
+            const isUserExist = await userSchema.findOne({email: data.email});
+            if (isUserExist) throw errorConfig.userExists;
+    
+            const pass = await  bcrypt.hash(process.env.AUTH_PASS_PREFIX + data.password, +process.env.AUTH_PASS_SALT_ROUNDS);
+
+            const newUser = {
+                email: data.email,
+                password: pass,
+                name: data.name,
+                surname: data.surname,
+            };
+            const user = await new userSchema(newUser).save();
+            const retUser = { email: user.email, name: user.name, surname:user.surname};
+            res.json(retUser);
+        }
+        catch (err) {
+            next(err);
+        }
+    }
+    
     createChatRoom = async (req, res, next) => {
         try {
             const {name} = req.body;

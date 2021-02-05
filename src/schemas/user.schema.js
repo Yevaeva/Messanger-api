@@ -19,6 +19,9 @@ const UserSchema = new Schema(
 		},
 		avatar: {
 			type: String,
+		},
+		room:{
+			type: String,
 		}
 	},
 	{
