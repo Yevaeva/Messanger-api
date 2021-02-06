@@ -8,7 +8,10 @@ require('dotenv').config({path: './config/env/' + process.env.NODE_ENV + '.env'}
 const indexRouter =  require('../routes/index.route');
 const usersRouter = require('../routes/user.route');
 const chatRoomRouter = require('../routes/chatroom.route');
-
+const {  getUsersInRoom } = require("../../users");
+const {  getMessagesInRoom } = require("../../messages");
+const auth = require('../middlewares/auth.middleware');
+// const chatRoomController = require('../controllers/chatroom.controller');
 
 // Initialize express app
 const app = express();
@@ -72,8 +75,17 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/user',usersRouter );
-app.use('/chatroom',chatRoomRouter );
+// app.use('/chatroom',chatRoomRouter );
+app.get("/rooms/:roomId/users", (req, res) => {
+  const users = getUsersInRoom(req.params.roomId);
+  return res.json({ users });
+});
 
+app.get("/rooms/:roomId/messages", (req, res) => {
+  const messages = getMessagesInRoom(req.params.roomId);
+  return res.json({ messages });
+});
+// chatRoomRouter.get('/',auth, /*validator('user-create'),*/ chatRoomController.getAllChatrooms);
 app.enable('case sensitive routing');
 app.enable('strict routing');
 

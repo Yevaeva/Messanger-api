@@ -1,35 +1,25 @@
-const userSchema = require('../schemas/user.schema')
-// const tokenSchema = require('../schemas/token.schema')
-const bcrypt = require('bcryptjs')
-const crypto = require('crypto')
-const jwt = require('jsonwebtoken')
+const messageSchema = require('../schemas/message.schema')
+
 const errorConfig = require('../../config/error.config')
 
 
 class UserController {
 
     
-     getAll = async (req, res) => {
-                const info = await userSchema.find()
-                return info
-        
-            }
-    getOne = async (req,res,next) =>{
-        try{
-            console.log('req.params.email',req.params.email);
-            const user = await userSchema.findOne({email: req.params.email.slice(1)});
-            console.log('oneUser',user);
-            const retUser = { email: user.email, name: user.name, surname:user.surname,picture:'',id:user._id};
-            return res.json(retUser);
-        }
-        catch (err) {
-            next(err);
-        }
-    }
+     
     
-    create = async (req, res, next) => {
+    addMessage = async (room, message) => {
         try {
-            const data = req.body;
+
+            const messages = [];
+            
+            const msg = { id: uuid.v4(), room, ...message };
+            messages.push(msg);
+            console.log('messages',messages);
+
+            return msg;
+            
+
             const isUserExist = await userSchema.findOne({email: data.email});
             if (isUserExist) throw errorConfig.userExists;
     
