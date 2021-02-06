@@ -1,18 +1,14 @@
-const mongoose = require('mongoose'),{Schema} = mongoose;
+const mongoose = require('mongoose')
+const {Schema} = mongoose;
 
 const messageSchema = new Schema(
 	{
-		chatroom: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref:'chatroom.schema'
+		room: {
+			type: String
 		},
-		user: {
-			type: mongoose.Schema.Types.ObjectId,
-			ref:'user.schema'
-		},
-		message:{
+		messages:[{
 			type:String
-		}
+		}]
 	
 	});
 

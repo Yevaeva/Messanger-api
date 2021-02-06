@@ -1,5 +1,5 @@
 const userSchema = require('../schemas/user.schema')
-const tokenSchema = require('../schemas/token.schema')
+// const tokenSchema = require('../schemas/token.schema')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const jwt = require('jsonwebtoken')
@@ -82,15 +82,15 @@ class UserController {
         }
     }
     
-    signOut = (req, res, next) => {
-        tokenSchema
-        .remove({jwt: req.body.jwt})
-        .then(result => {
-            if(!result.deletedCount) throw errorConfig.defaultError;
-            res.json();
-        })
-        .catch(err => next(err));
-    }
+    // signOut = (req, res, next) => {
+    //     tokenSchema
+    //     .remove({jwt: req.body.jwt})
+    //     .then(result => {
+    //         if(!result.deletedCount) throw errorConfig.defaultError;
+    //         res.json();
+    //     })
+    //     .catch(err => next(err));
+    // }
     
    
     
