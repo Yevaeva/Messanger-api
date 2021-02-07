@@ -1,25 +1,26 @@
-const mongoose = require('mongoose')
-const {Schema} = mongoose;
-let userSchema = require('./user.schema')
+const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
-const messageSchema = new Schema(
-	{
-		room: {
-			type: String
-		},
-		id:{
-			type:String
-		},
-		senderId:{
-			type:String
-		},
-		body:{
-			type:String
-		},
-		user: {
-			type: [userSchema]
-		}
-	
-	});
+const msgSchema = new Schema({
+    senderId:   {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User' ,
+        required: true
+    },
+    to:  { 
+        type: String, 
+        required: true,
+        //enum: ['languages', 'literature', 'mathemathics', 'phisics', 'computer knowledge'],
+    },
+    text:  {
+        type: String,
+        required: true
+    },
+    created: {
+        type: Date, 
+        default: Date.now,
+       
+    }
+});
 
-module.exports = mongoose.model('Message', messageSchema);
+module.exports = mongoose.model("Msg", msgSchema);
