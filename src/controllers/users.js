@@ -1,7 +1,7 @@
 const users = [];
 
 const addUser = (id, room, name, picture) => {
-  const existingUser = users.find( 
+  const existingUser = users.find(
     (user) => user.room === room && user.name === name
   );
 

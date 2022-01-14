@@ -1,4 +1,3 @@
-
 // const express = require('express'),
 // validator = require('../middlewares/validator.middleware'),
 // auth = require('../middlewares/auth.middleware'),
@@ -13,23 +12,7 @@
 // chatRoomRouter.post('/',auth, /*validator('user-create'),*/ chatRoomController.createChatRoom);
 // chatRoomRouter.get('/',auth, /*validator('user-create'),*/ chatRoomController.getAllChatrooms);
 
-
-
-
-
 // module.exports = chatRoomRouter;
-
-
-
-
-
-
-
-
-
-
-
-
 
 // // const express = require('express');
 // // const UsersController = require('../controllers/users.controller');
